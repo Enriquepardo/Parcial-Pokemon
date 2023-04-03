@@ -3,6 +3,7 @@
 
 from weapon_type import WeaponType
 
+
 """
 This Python module contains not only the class Pokemon, but also the test of
 this Python class.
@@ -119,20 +120,7 @@ class Pokemon():
         else:
             return False
     
-    def pelea_atacar(self, pokemon_objetivo):
-        if not isinstance(pokemon_objetivo, Pokemon):
-            raise TypeError('El pokemon objetivo debe ser una instancia de la clase Pokemon')
-        else:
-            if pokemon_objetivo.is_alive():
-                pokemon_objetivo.pelea_defender(self.__indice_ataque)
-
-    def pelea_defender(self, puntos_daño):
     
-        if self.__indice_defensa > puntos_daño:
-            return 0
-        else:
-            self.__puntos_salud -= (puntos_daño - self.__indice_defensa)
-            return True
 
 
 def main():
