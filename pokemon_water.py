@@ -69,8 +69,8 @@ class PokemonWater(Pokemon):
       >>> from weapon_type import WeaponType
       >>> obj_Pokemon = PokemonWater(1, "Squirtle", WeaponType.PUNCH, 100, 7, 10)
     """
-    def __init__(self, id, nombre, arma,puntos_salud,indice_ataque,indice_defensa):
-        super().__init__(id, nombre, arma,puntos_salud,indice_ataque,indice_defensa)
+    def __init__(self, id, nombre, arma, puntos_salud, indice_ataque, indice_defensa):
+        super().__init__(id, nombre, arma, puntos_salud, indice_ataque, indice_defensa)
         if not 11 <= indice_ataque <= 20:
             raise ValueError('El indice de ataque debe estar entre 11 y 20')
        

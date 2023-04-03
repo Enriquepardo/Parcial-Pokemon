@@ -70,8 +70,8 @@ class PokemonEarth(Pokemon):
       >>> obj_Pokemon = PokemonEarth(1, "Diglett", WeaponType.PUNCH, 100, 7, 10)
     """
     
-    def __init__(self, id, nombre, arma,puntos_salud,indice_ataque,indice_defensa):
-        super().__init__(id, nombre, arma,puntos_salud,indice_ataque,indice_defensa)
+    def __init__(self, id, nombre, arma, puntos_salud, indice_ataque, indice_defensa):
+        super().__init__(id, nombre, arma, puntos_salud, indice_ataque, indice_defensa)
         self.indice_defensa = indice_defensa
         if not 11 <= indice_defensa <= 20:
             raise ValueError('El indice de defensa debe estar entre 11 y 20')

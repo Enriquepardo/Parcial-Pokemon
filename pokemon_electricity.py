@@ -1,7 +1,6 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-
 """
 This Python module contains not only the class Pokemon, but also the test of
 this Python class.
@@ -29,7 +28,6 @@ this Python class.
               All rights are reserved. Reproduction in whole or in part is
               prohibited without the written consent of the copyright owner.
 """
-
 
 # Source packages.
 
@@ -70,31 +68,49 @@ class PokemonElectricity(Pokemon):
       >>> from weapon_type import WeaponType
       >>> obj_Pokemon = PokemonEarth(1, "Pikachu", WeaponType.PUNCH, 100, 7, 10)
     """
-    def __init__(self, id, nombre, arma,puntos_salud,indice_ataque,indice_defensa):
-        super().__init__(id, nombre, arma,puntos_salud,indice_ataque,indice_defensa)
+    def __init__(self, id, nombre, arma, puntos_salud, indice_ataque, indice_defensa):
+        super().__init__(id, nombre, arma, puntos_salud, indice_ataque, indice_defensa)
         self.indice_ataque = indice_ataque
-        if not 11 <= indice_ataque <= 20:
-            raise ValueError('El indice de ataque debe estar entre 11 y 20')
         
     def __str__(self):
-        return "Pokemon  ID " + str(self.get_id()) + " with name " + self.get_nombre() + " has as weapon " + self.get_arma().name + " and health " + str(self.get_puntos_salud())
+        return "Pokemon ID " + str(self.get_id()) + " with name " + self.get_nombre() + " has as weapon " + self.get_arma().name + " and health " + str(self.get_puntos_salud())
     
     def get_pokemon_name(self):
-        return self.__nombre
+        return self.get_nombre()
     
     def get_weapon_type(self):
-        return self.__tipo_arma
+        return self.get_arma()
 
     def get_health_points(self):
-        return self.__puntos_salud
+        return self.get_puntos_salud()
     
     def get_attack_rating(self):
-        return self.__indice_ataque 
+        return self.get_indice_ataque()
     
     def get_defense_rating(self):
-        return self.__indice_defensa 
+        return self.get_indice_defensa()
     
+    def is_alive(self):
+        if self.get_puntos_salud() > 0:
+            return True
+        else:
+            return False
+        
+    def fight_defense(self, points_of_damage):
+        if self.get_indice_defensa() > points_of_damage:
+            return False
+        else:
+            self.set_puntos_salud(self.get_puntos_salud() - (points_of_damage - self.get_indice_defensa()))
+            return True
+        
+    def fight_attack(self, pokemon):
+        if random.randint(0,1) == 0:
+            return False
+        else:
+            self.set_puntos_salud(self.get_puntos_salud() - (pokemon.get_indice_ataque() - self.get_indice_defensa()))
+            return True
 
+    
 
 def main():
     """Function main of the module.

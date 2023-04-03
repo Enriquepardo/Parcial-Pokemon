@@ -70,14 +70,13 @@ class PokemonAir(Pokemon):
       >>> from weapon_type import WeaponType
       >>> obj_Pokemon = PokemonEarth(1, "Pidgey", WeaponType.PUNCH, 100, 7, 10)
     """
-    def __init__(self, id, nombre, arma,puntos_salud,indice_ataque,indice_defensa):
-        super().__init__(id, nombre, arma,puntos_salud,indice_ataque,indice_defensa)
-        self.indice_defensa = indice_defensa
-        if not 11 <= indice_defensa <= 20:
-            raise ValueError('El indice de defensa debe estar entre 11 y 20')
+    def __init__(self, id, nombre, arma, puntos_salud, indice_ataque, indice_defensa):
+        super().__init__(id, nombre, arma, puntos_salud, indice_ataque, indice_defensa)
+        self.indice_defensa = indice_defensa 
         
+       
     def __str__(self):
-        return "Pokemon air ID " + str(self.get_id()) + " with name " + self.get_nombre() + " has as weapon " + self.get_arma().name + " and health " + str(self.get_puntos_salud())
+        return "Pokemon ID " + str(self.get_id()) + " with name " + self.get_nombre() + " has as weapon " + self.get_arma().name + " and health " + str(self.get_puntos_salud())
     
     def get_pokemon_name(self):
         return self.get_nombre()
@@ -101,7 +100,7 @@ class PokemonAir(Pokemon):
             return False
 
     def fight_defense(self, points_of_damage):
-        if self.get_indice_defensa() > points_of_damage:
+        if random.randint(0,1) == 0:
             return False
         else:
             self.set_puntos_salud(self.get_puntos_salud() - (points_of_damage - self.get_indice_defensa()))
