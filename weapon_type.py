@@ -33,9 +33,9 @@ this Python class.
 
 # Source packages.
 
+from enum import Enum
 
-
-class WeaponType():
+class WeaponType(Enum):
     """Python class to implement an enumeration for the attribute Weapon Type.
 
     This Python class implements an enumeration for the attribute Weapon Type.
@@ -60,10 +60,10 @@ class WeaponType():
       >>> from weapon_type import WeaponType
       >>> obj_WeaponType = WeaponType.Boxer
     """
-    PUNCH = 1
-    KICK = 2
-    ELBOW = 3
-    HEADBUTT = 4
+    PUNCH = 2
+    KICK = 4
+    ELBOW = 6
+    HEADBUTT = 10
     
 
 

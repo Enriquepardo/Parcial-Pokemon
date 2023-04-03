@@ -37,47 +37,102 @@ this Python class.
 
 
 class Pokemon():
-        """Python class to implement a basic version of a Pokemon of the game.
+    """Python class to implement a basic version of a Pokemon of the game.
 
-        This Python class implements the basic version of a Pokemon of the game.
+    This Python class implements the basic version of a Pokemon of the game.
+
+    Syntax
+    ------
+    obj = Pokemon(id, pokemon_name, weapon_type, health_points,
+                attack_rating, defense_rating)
+
+    Parameters
+    ----------
+    [in] id ID of the Pokemon.
+    [in] pokemon_name Name of the Pokemon.
+    [in] weapon_type Type of weapon that carries out the Pokemon.
+    [in] health_points Points of health that the Pokemon has.
+    [in] attack_rating Attack rating of the Pokemon.
+    [in] defense_rating Defense rating of the Pokemon.
+
+    Returns
+    -------
+    obj Python object output parameter that represents an instance
+        of the class Pokemon.
+
+    Attributes
+    ----------
+
+    Example
+    -------
+    >>> from pokemon import Pokemon
+    >>> from weapon_type import WeaponType
+    >>> obj_Pokemon = Pokemon(1, "Bulbasaur", WeaponType.PUNCH, 100, 7, 10)
+    """
+    pokemon_ids = []
+
+    def __init__(self,id ,nombre, tipo_arma, puntos_salud, indice_ataque, indice_defensa):
+        self.__id = id
+        self.__nombre = nombre
+        self.__tipo_arma = tipo_arma
+        self.__puntos_salud = puntos_salud
+        self.__indice_ataque = indice_ataque
+        self.__indice_defensa = indice_defensa
+
+        Pokemon.pokemon_ids.append(id)
+
+    def __str__(self):
+        return ' Pokemon ID {} con nombre {} usa de arma {} y tiene {} puntos de salud' .format(self.__id, self.__nombre, self.__tipo_arma, self.__puntos_salud)
     
-        Syntax
-        ------
-        obj = Pokemon(id, pokemon_name, weapon_type, health_points,
-                    attack_rating, defense_rating)
-
-        Parameters
-        ----------
-        [in] id ID of the Pokemon.
-        [in] pokemon_name Name of the Pokemon.
-        [in] weapon_type Type of weapon that carries out the Pokemon.
-        [in] health_points Points of health that the Pokemon has.
-        [in] attack_rating Attack rating of the Pokemon.
-        [in] defense_rating Defense rating of the Pokemon.
-
-        Returns
-        -------
-        obj Python object output parameter that represents an instance
-            of the class Pokemon.
-
-        Attributes
-        ----------
-
-        Example
-        -------
-        >>> from pokemon import Pokemon
-        >>> from weapon_type import WeaponType
-        >>> obj_Pokemon = Pokemon(1, "Bulbasaur", WeaponType.PUNCH, 100, 7, 10)
-        """
-        def __init__(self,id ,nombre, tipo_arma, puntos_salud, indice_ataque, indice_defensa):
-            self.__id = id
-            self.__nombre = nombre
-            self.__tipo_arma = tipo_arma
-            self.__puntos_salud = puntos_salud
-            self.__indice_ataque = indice_ataque
-            self.__indice_defensa = indice_defensa
+    def __del__(self):
+        Pokemon.pokemon_ids.remove(self.__id)
 
     
+    def get_id(self):
+        return self.__id
+    
+    def get_nombre(self):    
+        return self.__nombre
+    
+    def get_arma(self):
+        return self.__tipo_arma
+    
+    def get_puntos_salud(self):
+        return self.__puntos_salud
+    
+    def get_indice_ataque(self):
+        return self.__indice_ataque
+    
+    def get_indice_defensa(self):
+        return self.__indice_defensa
+
+    # solo se pueden modificar los puntos de salud
+    def set_puntos_salud(self, puntos_salud):
+        if not isinstance(puntos_salud, int):
+            raise TypeError('Los puntos de salud deben ser un numero entero')
+        self.__puntos_salud = puntos_salud
+
+
+    def is_alive(self):
+        if self.__puntos_salud > 0:
+            return True
+        else:
+            return False
+    
+    def pelea_atacar(self, pokemon_objetivo):
+        if not isinstance(pokemon_objetivo, Pokemon):
+            raise TypeError('El pokemon objetivo debe ser una instancia de la clase Pokemon')
+        else:
+            if pokemon_objetivo.is_alive():
+                pokemon_objetivo.pelea_defender(self.__indice_ataque)
+
+    def pelea_defender(self, puntos_daño):
+    
+        if self.__indice_defensa > puntos_daño:
+            return 0
+        else:
+            self.__puntos_salud -= (puntos_daño - self.__indice_defensa)
+            return True
 
 
 def main():
