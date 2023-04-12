@@ -35,7 +35,7 @@ this Python class.
 
 # Source packages.
 
-
+import random
 
 class Pokemon():
     """Python class to implement a basic version of a Pokemon of the game.
@@ -72,55 +72,68 @@ class Pokemon():
     """
     pokemon_ids = []
 
-    def __init__(self,id ,nombre, tipo_arma, puntos_salud, indice_ataque, indice_defensa):
-        self.__id = id
-        self.__nombre = nombre
-        self.__tipo_arma = tipo_arma
-        self.__puntos_salud = puntos_salud
-        self.__indice_ataque = indice_ataque
-        self.__indice_defensa = indice_defensa
+    def __init__(self,id_pokemon ,pokemon_name, weapon_type, health_points, attack_rating, defense_rating):
+        self.__id_pokemon = id_pokemon
+        self.__pokemon_name = pokemon_name
+        self.__weapon_type = weapon_type
+        self.__health_points = health_points
+        self.__attack_rating = attack_rating
+        self.__defense_rating = defense_rating
 
-        Pokemon.pokemon_ids.append(id)
+        Pokemon.pokemon_ids.append(id_pokemon)
 
     def __str__(self):
-        return ' Pokemon ID {} con nombre {} usa de arma {} y tiene {} puntos de salud' .format(self.__id, self.__nombre, self.__tipo_arma, self.__puntos_salud)
+        return f'Pokemon ID ' + str(self.get_id()) + ' with name ' + self.get_pokemon_name() + ' has as weapon ' + self.get_weapon_type().name + ' and health ' + str(self.get_health_points())
     
     def __del__(self):
-        Pokemon.pokemon_ids.remove(self.__id)
+        Pokemon.pokemon_ids.remove(self.__id_pokemon)
 
     
     def get_id(self):
-        return self.__id
+        return self.__id_pokemon
     
-    def get_nombre(self):    
-        return self.__nombre
+    def get_pokemon_name(self):    
+        return self.__pokemon_name
     
-    def get_arma(self):
-        return self.__tipo_arma
+    def get_weapon_type(self):
+        return self.__weapon_type
     
-    def get_puntos_salud(self):
-        return self.__puntos_salud
+    def get_health_points(self):
+        return self.__health_points
     
-    def get_indice_ataque(self):
-        return self.__indice_ataque
+    def get_attack_rating(self):
+        return self.__attack_rating
     
-    def get_indice_defensa(self):
-        return self.__indice_defensa
+    def get_defense_rating(self):
+        return self.__defense_rating
 
     # solo se pueden modificar los puntos de salud
-    def set_puntos_salud(self, puntos_salud):
-        if not isinstance(puntos_salud, int):
+    def set_health_points(self, health_points):
+        if not isinstance(health_points, int):
             raise TypeError('Los puntos de salud deben ser un numero entero')
-        self.__puntos_salud = puntos_salud
+        self.__health_points = health_points
 
 
     def is_alive(self):
-        if self.__puntos_salud > 0:
+        if self.get_health_points() > 0:
             return True
         else:
             return False
+        
     
-    
+    def fight_defense(self, points_of_damage):
+        if self.get_defense_rating() >= points_of_damage:
+            return False
+        else:
+            self.set_health_points(self.get_health_points() - (points_of_damage - self.get_defense_rating()))
+            return True
+
+
+    def fight_attack(self, pokemon_to_attack):
+        if pokemon_to_attack.fight_defense(self.get_attack_rating()):
+            return True
+        else:
+            return False
 
 
 def main():

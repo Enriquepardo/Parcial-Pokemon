@@ -79,22 +79,22 @@ class PokemonAir(Pokemon):
         return "Pokemon ID " + str(self.get_id()) + " with name " + self.get_nombre() + " has as weapon " + self.get_arma().name + " and health " + str(self.get_puntos_salud())
     
     def get_pokemon_name(self):
-        return self.get_nombre()
+        return self.get_pokemon_name()
 
     def get_weapon_type(self):  
-        return self.get_arma()
+        return self.get_weapon_type()
 
     def get_health_points(self):  
-        return self.get_puntos_salud()
+        return self.get_health_points()
     
     def get_attack_rating(self):
-        return self.get_indice_ataque()
+        return self.get_attack_rating()
     
     def get_defense_rating(self):
-        return self.get_indice_defensa()
+        return self.get_defense_rating()
 
     def is_alive(self):
-        if self.get_puntos_salud() > 0:
+        if self.get_health_points() > 0:
             return True
         else:
             return False
@@ -103,11 +103,11 @@ class PokemonAir(Pokemon):
         if random.randint(0,1) == 0:
             return False
         else:
-            self.set_puntos_salud(self.get_puntos_salud() - (points_of_damage - self.get_indice_defensa()))
+            self.set_puntos_salud(self.get_health_points() - (points_of_damage - self.get_defense_rating()))
             return True
 
     def fight_attack(self, pokemon_to_attack):
-        if pokemon_to_attack.fight_defense(self.get_indice_ataque()):
+        if pokemon_to_attack.fight_defense(self.get_attack_rating()):
             return True
         else:
             return False
