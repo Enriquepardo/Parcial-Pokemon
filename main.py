@@ -31,11 +31,18 @@ This Python method contains the application of the Game.
 
 
 # Source packages.
+import csv
+from pokemon import Pokemon
+from weapon_type import WeaponType
+import random
+
+
 
 
 
 def get_data_from_user(name_file):
     """Function to obtain data from each user.
+
 
     This function obtains data from each user in order to set the configuration
     of the Game.
@@ -56,6 +63,8 @@ def get_data_from_user(name_file):
     -------
       >>> list_pokemons = get_data_from_user("file.csv")
     """
+
+    
 
 
 
@@ -84,7 +93,8 @@ def get_pokemon_in_a_list_of_pokemons(coach_to_ask, list_of_pokemons):
     -------
        >>> get_pokemon_in_a_list_of_pokemons(1, list_of_pokemons)
     """
-
+  
+    
 
 
 def coach_is_undefeated(list_of_pokemons):
@@ -110,6 +120,8 @@ def coach_is_undefeated(list_of_pokemons):
     -------
        >>> coach_is_undefeated(list_of_pokemons)
     """
+
+    
 
 
 def main():
@@ -138,20 +150,21 @@ def main():
     print("Let's start to set the configuration of each game user. \n")
 
     # Get configuration for Game User 1.
+    get_data_from_user('coach_1_pokemons.csv')
 
 
     # Get configuration for Game User 2.
-
+    get_data_from_user('coach_2_pokemons.csv')
 
     print("------------------------------------------------------------------")
     print("The Game starts...")
     print("------------------------------------------------------------------")
 
     # Get a copy of the list of pokemons:
-
+    
 
     # Choose first pokemons
- 
+
 
     # Main loop.
 
@@ -178,3 +191,7 @@ if __name__ == "__main__":
 
 
 # EOF
+
+
+
+

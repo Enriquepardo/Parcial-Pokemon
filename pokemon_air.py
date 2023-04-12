@@ -70,16 +70,27 @@ class PokemonAir(Pokemon):
       >>> from weapon_type import WeaponType
       >>> obj_Pokemon = PokemonEarth(1, "Pidgey", WeaponType.PUNCH, 100, 7, 10)
     """
-    def __init__(self, id, nombre, arma, puntos_salud, indice_ataque, indice_defensa):
-        super().__init__(id, nombre, arma, puntos_salud, indice_ataque, indice_defensa)
-        self.indice_defensa = indice_defensa 
+    def __init__(self,id_pokemon ,pokemon_name, weapon_type, health_points, attack_rating, defense_rating):
+        super().__init__(id_pokemon, pokemon_name, weapon_type, health_points, attack_rating, defense_rating)
+ 
         
        
     def __str__(self):
         return f'Pokemon ID ' + str(self.get_id()) + ' with name ' + self.get_pokemon_name() + ' has as weapon ' + self.get_weapon_type().name + ' and health ' + str(self.get_health_points())
 
-    
 
+    def fight_defense(self, points_of_damage):
+        if random.random() < 0.5:
+            return False
+            
+        if self.get_defense_rating() >= points_of_damage:
+            return False
+        
+        else:
+            self.set_health_points(self.get_health_points() - (points_of_damage - self.get_defense_rating()))
+            return True
+        
+        
 def main():
     """Function main of the module.
 
