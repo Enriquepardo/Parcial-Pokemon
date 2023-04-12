@@ -76,43 +76,9 @@ class PokemonAir(Pokemon):
         
        
     def __str__(self):
-        return "Pokemon ID " + str(self.get_id()) + " with name " + self.get_nombre() + " has as weapon " + self.get_arma().name + " and health " + str(self.get_puntos_salud())
+        return f'Pokemon ID ' + str(self.get_id()) + ' with name ' + self.get_pokemon_name() + ' has as weapon ' + self.get_weapon_type().name + ' and health ' + str(self.get_health_points())
+
     
-    def get_pokemon_name(self):
-        return self.get_pokemon_name()
-
-    def get_weapon_type(self):  
-        return self.get_weapon_type()
-
-    def get_health_points(self):  
-        return self.get_health_points()
-    
-    def get_attack_rating(self):
-        return self.get_attack_rating()
-    
-    def get_defense_rating(self):
-        return self.get_defense_rating()
-
-    def is_alive(self):
-        if self.get_health_points() > 0:
-            return True
-        else:
-            return False
-
-    def fight_defense(self, points_of_damage):
-        if random.randint(0,1) == 0:
-            return False
-        else:
-            self.set_puntos_salud(self.get_health_points() - (points_of_damage - self.get_defense_rating()))
-            return True
-
-    def fight_attack(self, pokemon_to_attack):
-        if pokemon_to_attack.fight_defense(self.get_attack_rating()):
-            return True
-        else:
-            return False
-
-
 
 def main():
     """Function main of the module.

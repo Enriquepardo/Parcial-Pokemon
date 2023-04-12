@@ -73,43 +73,9 @@ class PokemonElectricity(Pokemon):
         self.indice_ataque = indice_ataque
         
     def __str__(self):
-        return "Pokemon ID " + str(self.get_id()) + " with name " + self.get_nombre() + " has as weapon " + self.get_arma().name + " and health " + str(self.get_puntos_salud())
-    
-    def get_pokemon_name(self):
-        return self.get_nombre()
-    
-    def get_weapon_type(self):
-        return self.get_arma()
+        return f'Pokemon ID ' + str(self.get_id()) + ' with name ' + self.get_pokemon_name() + ' has as weapon ' + self.get_weapon_type().name + ' and health ' + str(self.get_health_points())
 
-    def get_health_points(self):
-        return self.get_puntos_salud()
     
-    def get_attack_rating(self):
-        return self.get_indice_ataque()
-    
-    def get_defense_rating(self):
-        return self.get_indice_defensa()
-    
-    def is_alive(self):
-        if self.get_puntos_salud() > 0:
-            return True
-        else:
-            return False
-        
-    def fight_defense(self, points_of_damage):
-        if self.get_indice_defensa() > points_of_damage:
-            return False
-        else:
-            self.set_puntos_salud(self.get_puntos_salud() - (points_of_damage - self.get_indice_defensa()))
-            return True
-        
-    def fight_attack(self, pokemon):
-        if random.randint(0,1) == 0:
-            return False
-        else:
-            self.set_puntos_salud(self.get_puntos_salud() - (pokemon.get_indice_ataque() - self.get_indice_defensa()))
-            return True
-
     
 
 def main():

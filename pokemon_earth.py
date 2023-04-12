@@ -70,49 +70,21 @@ class PokemonEarth(Pokemon):
       >>> obj_Pokemon = PokemonEarth(1, "Diglett", WeaponType.PUNCH, 100, 7, 10)
     """
     
-    def __init__(self, id, nombre, arma, puntos_salud, indice_ataque, indice_defensa):
-        super().__init__(id, nombre, arma, puntos_salud, indice_ataque, indice_defensa)
-        self.indice_defensa = indice_defensa
-        if not 11 <= indice_defensa <= 20:
-            raise ValueError('El indice de defensa debe estar entre 11 y 20')
+    def __init__(self, id_pokemon, pokemon_name, weapon_type, health_points, attack_rating, defense_index):
+        super().__init__(id_pokemon, pokemon_name, weapon_type, health_points, attack_rating, defense_index)
+        self.__defense_index = defense_index
+        if self.__defense_index < 11 or self.__defense_index > 20:
+            raise ValueError('El índice de defensa debe estar entre 11 y 20')
+        
         
     def __str__(self):
-        return 'Pokemon ID ' + str(self.get_id()) + ' with name ' + self.get_nombre() + ' has as weapon ' + self.get_arma().name + ' and health ' + str(self.get_puntos_salud()) 
+        return super().__str__() 
     
-    def get_pokemon_name(self):
-        return self.get_nombre()
 
-    def get_weapon_type(self):  
-        return self.get_arma()
-
-    def get_health_points(self):  
-        return self.get_puntos_salud()
-    
-    def get_attack_rating(self):
-        return self.get_indice_ataque()
-    
-    def get_defense_rating(self):
-        return self.get_indice_defensa()
-
-    def is_alive(self):
-        if self.get_puntos_salud() > 0:
-            return True
-        else:
-            return False
-        
-    def fight_defense(self, points_of_damage):
-        if self.get_indice_defensa() > points_of_damage:
-            return False
-        else:
-            self.set_puntos_salud(self.get_puntos_salud() - (points_of_damage - self.get_indice_defensa()))
-            return True
-
-    def fight_attack(self, pokemon_to_attack):
-        if pokemon_to_attack.fight_defense(self.get_indice_ataque()):
-            return True
-        else:
-            return False
+    def get_defense_index(self):
+        return self.__defense_index
    
+
 def main():
     """Function main of the module.
 
