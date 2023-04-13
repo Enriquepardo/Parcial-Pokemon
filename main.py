@@ -233,102 +233,112 @@ def main():
 
         if pokemon_coach_1.get_health_points() <= 0:
             print("Coach 2 wins this battle!")
+            ganador = 2
             list_of_pokemons_1.remove(pokemon_coach_1)
         else:
             print("Coach 1 wins this battle!")
+            ganador = 1
             list_of_pokemons_2.remove(pokemon_coach_2)
 
 
-        # Second battle.
-        eleccion_2_coach_1 = get_pokemon_in_a_list_of_pokemons(1, list_of_pokemons_1)
-        eleccion_2_coach_2 = get_pokemon_in_a_list_of_pokemons(2, list_of_pokemons_2)
 
-        while not coach_is_undefeated(list_of_pokemons_1) and not coach_is_undefeated(list_of_pokemons_2):
-            pokemon_coach_1 = eleccion_2_coach_1
-            pokemon_coach_2 = eleccion_2_coach_2
+    # Second battle.
+    eleccion_2_coach_1 = get_pokemon_in_a_list_of_pokemons(1, list_of_pokemons_1)
+    eleccion_2_coach_2 = get_pokemon_in_a_list_of_pokemons(2, list_of_pokemons_2)
 
+    while not coach_is_undefeated(list_of_pokemons_1) and not coach_is_undefeated(list_of_pokemons_2):
+        pokemon_coach_1 = eleccion_2_coach_1
+        pokemon_coach_2 = eleccion_2_coach_2
+
+        print("------------------------------------------------------------------")
+        print("Coach 1 has selected " + str(pokemon_coach_1))
+        print("Coach 2 has selected " + str(pokemon_coach_2))
+        print("------------------------------------------------------------------")
+    
+        while pokemon_coach_1.is_alive() > 0 and pokemon_coach_2.is_alive() > 0:
+            damage_1 = pokemon_coach_1.fight_attack(pokemon_coach_2)
+            damage_2 = pokemon_coach_2.fight_attack(pokemon_coach_1)
             print("------------------------------------------------------------------")
-            print("Coach 1 has selected " + str(pokemon_coach_1))
-            print("Coach 2 has selected " + str(pokemon_coach_2))
+            print(str(pokemon_coach_1) + " attacks " + str(pokemon_coach_2) + " with " + str(damage_1) + " damage.")
+            print(str(pokemon_coach_2) + " attacks " + str(pokemon_coach_1) + " with " + str(damage_2) + " damage.")
+            pokemon_coach_1.fight_defense(damage_2)
+            pokemon_coach_2.fight_defense(damage_1)
             print("------------------------------------------------------------------")
-        
-            while pokemon_coach_1.is_alive() > 0 and pokemon_coach_2.is_alive() > 0:
-                damage_1 = pokemon_coach_1.fight_attack(pokemon_coach_2)
-                damage_2 = pokemon_coach_2.fight_attack(pokemon_coach_1)
-                print("------------------------------------------------------------------")
-                print(str(pokemon_coach_1) + " attacks " + str(pokemon_coach_2) + " with " + str(damage_1) + " damage.")
-                print(str(pokemon_coach_2) + " attacks " + str(pokemon_coach_1) + " with " + str(damage_2) + " damage.")
-                pokemon_coach_1.fight_defense(damage_2)
-                pokemon_coach_2.fight_defense(damage_1)
-                print("------------------------------------------------------------------")
+
+
+        if pokemon_coach_1.get_health_points() <= 0:
+            print("Coach 2 wins this battle!")
+            ganador = 2
+            list_of_pokemons_1.remove(pokemon_coach_1)
+        else:
+            print("Coach 1 wins this battle!")
+            ganador = 1
+            list_of_pokemons_2.remove(pokemon_coach_2)
+
+
+    
+    # Third battle.
+    eleccion_3_coach_1 = get_pokemon_in_a_list_of_pokemons(1, list_of_pokemons_1)
+    eleccion_3_coach_2 = get_pokemon_in_a_list_of_pokemons(2, list_of_pokemons_2)
+    while not coach_is_undefeated(list_of_pokemons_1) and not coach_is_undefeated(list_of_pokemons_2):
+        pokemon_coach_1 = eleccion_3_coach_1
+        pokemon_coach_2 = eleccion_3_coach_2
+
+        print("------------------------------------------------------------------")
+        print("Coach 1 has selected " + str(pokemon_coach_1))
+        print("Coach 2 has selected " + str(pokemon_coach_2))
+        print("------------------------------------------------------------------")
+    
+        while pokemon_coach_1.is_alive() > 0 and pokemon_coach_2.is_alive() > 0:
+            damage_1 = pokemon_coach_1.fight_attack(pokemon_coach_2)
+            damage_2 = pokemon_coach_2.fight_attack(pokemon_coach_1)
+            print("------------------------------------------------------------------")
+            print(str(pokemon_coach_1) + " attacks " + str(pokemon_coach_2) + " with " + str(damage_1) + " damage.")
+            print(str(pokemon_coach_2) + " attacks " + str(pokemon_coach_1) + " with " + str(damage_2) + " damage.")
+            pokemon_coach_1.fight_defense(damage_2)
+            pokemon_coach_2.fight_defense(damage_1)
+            print("------------------------------------------------------------------")
 
 
             if pokemon_coach_1.get_health_points() <= 0:
                 print("Coach 2 wins this battle!")
+                ganador = 2
                 list_of_pokemons_1.remove(pokemon_coach_1)
             else:
                 print("Coach 1 wins this battle!")
+                ganador = 1
                 list_of_pokemons_2.remove(pokemon_coach_2)
 
-
-        
-            # Third battle.
-            eleccion_3_coach_1 = get_pokemon_in_a_list_of_pokemons(1, list_of_pokemons_1)
-            eleccion_3_coach_2 = get_pokemon_in_a_list_of_pokemons(2, list_of_pokemons_2)
-            while not coach_is_undefeated(list_of_pokemons_1) and not coach_is_undefeated(list_of_pokemons_2):
-                pokemon_coach_1 = eleccion_3_coach_1
-                pokemon_coach_2 = eleccion_3_coach_2
-
-                print("------------------------------------------------------------------")
-                print("Coach 1 has selected " + str(pokemon_coach_1))
-                print("Coach 2 has selected " + str(pokemon_coach_2))
-                print("------------------------------------------------------------------")
-            
-                while pokemon_coach_1.is_alive() > 0 and pokemon_coach_2.is_alive() > 0:
-                    damage_1 = pokemon_coach_1.fight_attack(pokemon_coach_2)
-                    damage_2 = pokemon_coach_2.fight_attack(pokemon_coach_1)
-                    print("------------------------------------------------------------------")
-                    print(str(pokemon_coach_1) + " attacks " + str(pokemon_coach_2) + " with " + str(damage_1) + " damage.")
-                    print(str(pokemon_coach_2) + " attacks " + str(pokemon_coach_1) + " with " + str(damage_2) + " damage.")
-                    pokemon_coach_1.fight_defense(damage_2)
-                    pokemon_coach_2.fight_defense(damage_1)
-                    print("------------------------------------------------------------------")
-
-
-                if pokemon_coach_1.get_health_points() <= 0:
-                    print("Coach 2 wins this battle!")
-                    list_of_pokemons_1.remove(pokemon_coach_1)
-                else:
-                    print("Coach 1 wins this battle!")
-                    list_of_pokemons_2.remove(pokemon_coach_2)
-
                 
-                if ganador == 1:
-                    coach_stats[1][0] += 1  
-                    coach_stats[2][1] += 1  
-                elif ganador == 2:
-                    coach_stats[1][1] += 1  
-                    coach_stats[2][0] += 1  
-                else:
-                    coach_stats[1][2] += 1  
-                    coach_stats[2][2] += 1  
+                 
 
 
     print("------------------------------------------------------------------")
     print("The Game has end...")
     print("------------------------------------------------------------------")
-
+    
+    
 
     print("------------------------------------------------------------------")
     print("Statistics")
     print("------------------------------------------------------------------")
     print("Game User 1:")
-    coach_stats[1][0] += 1  # add 1 to number of wins for Coach 1
+    
+    # Printing the statistics of the first coach.
 
-
+    for pokemon in list_of_pokemons_1:
+        print("------------------------------------------------------------------")
+        print("Pokemon: " + str(pokemon))
+        print("Health Points: " + str(pokemon.get_health_points()))
+        
+        print("------------------------------------------------------------------")
     print("Game User 2:")
-    coach_stats[2][1] += 1  # add 1 to number of losses for Coach 2
-
+    
+    for pokemon in list_of_pokemons_2:
+        print("------------------------------------------------------------------")
+        print("Pokemon: " + str(pokemon))
+        print("Health Points: " + str(pokemon.get_health_points()))
+        print("------------------------------------------------------------------")
 
 
 # Checking whether this module is executed just itself alone.
