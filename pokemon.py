@@ -72,7 +72,7 @@ class Pokemon():
     """
     pokemon_ids = []
 
-    def __init__(self,id_pokemon ,pokemon_name, weapon_type, health_points, attack_rating, defense_rating):
+    def __init__(self, id_pokemon , pokemon_name, weapon_type, health_points, attack_rating, defense_rating):
         self.__id_pokemon = id_pokemon
         self.__pokemon_name = pokemon_name
         self.__weapon_type = weapon_type
@@ -134,6 +134,7 @@ class Pokemon():
             return True
         else:
             return False
+
 
 
 def main():

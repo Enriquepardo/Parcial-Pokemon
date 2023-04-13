@@ -31,14 +31,14 @@ This Python method contains the application of the Game.
 
 
 # Source packages.
+
 import csv
 from pokemon import Pokemon
 from weapon_type import WeaponType
 import random
 
 
-
-
+list_of_pokemons = []
 
 def get_data_from_user(name_file):
     """Function to obtain data from each user.
@@ -63,9 +63,13 @@ def get_data_from_user(name_file):
     -------
       >>> list_pokemons = get_data_from_user("file.csv")
     """
-
     
-
+    with open(name_file, 'r') as file:
+        reader = csv.reader(file)
+        for line in reader:
+            pokemon = Pokemon(int(line[0]), str(line[1]), str(line[2]), int(line[3]), int(line[4]), int(line[5]))
+            list_of_pokemons.append(pokemon)
+    return list_of_pokemons
 
 
 def get_pokemon_in_a_list_of_pokemons(coach_to_ask, list_of_pokemons):
@@ -93,8 +97,13 @@ def get_pokemon_in_a_list_of_pokemons(coach_to_ask, list_of_pokemons):
     -------
        >>> get_pokemon_in_a_list_of_pokemons(1, list_of_pokemons)
     """
-  
     
+    print('Coach ' + str(coach_to_ask) + ' select your Pokemon: ')
+    
+get_data_from_user('coach_1_pokemons.csv')
+get_pokemon_in_a_list_of_pokemons(1, list_of_pokemons)
+for pokemon in list_of_pokemons:
+    print(pokemon)
 
 
 def coach_is_undefeated(list_of_pokemons):
@@ -120,7 +129,7 @@ def coach_is_undefeated(list_of_pokemons):
     -------
        >>> coach_is_undefeated(list_of_pokemons)
     """
-
+    
     
 
 
@@ -150,11 +159,11 @@ def main():
     print("Let's start to set the configuration of each game user. \n")
 
     # Get configuration for Game User 1.
-    get_data_from_user('coach_1_pokemons.csv')
+    coach_1 = get_data_from_user('coach_1_pokemons.csv')
 
 
     # Get configuration for Game User 2.
-    get_data_from_user('coach_2_pokemons.csv')
+    coach_2 = get_data_from_user('coach_2_pokemons.csv')
 
     print("------------------------------------------------------------------")
     print("The Game starts...")
@@ -162,9 +171,12 @@ def main():
 
     # Get a copy of the list of pokemons:
     
-
+    list_of_pokemons_1 = coach_1.copy()
+    list_of_pokemons_2 = coach_2.copy()
+    print(list_of_pokemons_1)
     # Choose first pokemons
-
+    get_pokemon_in_a_list_of_pokemons(1, list_of_pokemons_1)
+    get_pokemon_in_a_list_of_pokemons(2, list_of_pokemons_2)
 
     # Main loop.
 
@@ -191,7 +203,3 @@ if __name__ == "__main__":
 
 
 # EOF
-
-
-
-
