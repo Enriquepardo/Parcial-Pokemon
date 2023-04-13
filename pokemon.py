@@ -35,7 +35,7 @@ this Python class.
 
 # Source packages.
 
-import random
+
 
 class Pokemon():
     """Python class to implement a basic version of a Pokemon of the game.
@@ -79,6 +79,7 @@ class Pokemon():
         self.__health_points = health_points
         self.__attack_rating = attack_rating
         self.__defense_rating = defense_rating
+        
 
         Pokemon.pokemon_ids.append(id_pokemon)
 
@@ -106,7 +107,7 @@ class Pokemon():
     
     def get_defense_rating(self):
         return self.__defense_rating
-
+    
     # solo se pueden modificar los puntos de salud
     def set_health_points(self, health_points):
         if not isinstance(health_points, int):

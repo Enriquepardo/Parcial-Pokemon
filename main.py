@@ -38,7 +38,7 @@ from weapon_type import WeaponType
 import random
 
 
-list_of_pokemons = []
+
 
 def get_data_from_user(name_file):
     """Function to obtain data from each user.
@@ -64,10 +64,17 @@ def get_data_from_user(name_file):
       >>> list_pokemons = get_data_from_user("file.csv")
     """
     
-    with open(name_file, 'r') as file:
-        reader = csv.reader(file)
-        for line in reader:
-            pokemon = Pokemon(int(line[0]), str(line[1]), str(line[2]), int(line[3]), int(line[4]), int(line[5]))
+    list_of_pokemons = []
+    with open(name_file, newline='') as csvfile:
+        reader = csv.reader(csvfile)
+        for row in reader:
+            id_pokemon = int(row[0])
+            pokemon_name = row[1]
+            weapon_type = WeaponType[row[2].upper()]
+            health_points = int(row[3])
+            attack_rating = int(row[4])
+            defense_rating = int(row[5])
+            pokemon = Pokemon(id_pokemon, pokemon_name, weapon_type, health_points, attack_rating, defense_rating)
             list_of_pokemons.append(pokemon)
     return list_of_pokemons
 
@@ -98,12 +105,26 @@ def get_pokemon_in_a_list_of_pokemons(coach_to_ask, list_of_pokemons):
        >>> get_pokemon_in_a_list_of_pokemons(1, list_of_pokemons)
     """
     
-    print('Coach ' + str(coach_to_ask) + ' select your Pokemon: ')
-    
-get_data_from_user('coach_1_pokemons.csv')
-get_pokemon_in_a_list_of_pokemons(1, list_of_pokemons)
-for pokemon in list_of_pokemons:
-    print(pokemon)
+    print("------------------------------------------------------------------")
+    print("Coach " + str(coach_to_ask) + " select your Pokemon.")
+    print("------------------------------------------------------------------")
+    print("List of Pokemons:")
+    for pokemon in list_of_pokemons:
+        print(pokemon)
+    print("------------------------------------------------------------------")
+    pokemon_id = int(input("Select the ID of the Pokemon: "))
+    pokemon = None
+    for p in list_of_pokemons:
+        if p.get_id() == pokemon_id:  
+            pokemon = p
+            break
+    if pokemon is None:
+        print("Invalid Pokemon ID selected.")
+    else:
+        print("------------------------------------------------------------------")
+        print("Coach " + str(coach_to_ask) + " selected the Pokemon: " + str(pokemon))
+        print("------------------------------------------------------------------")
+    return pokemon
 
 
 def coach_is_undefeated(list_of_pokemons):
@@ -174,6 +195,7 @@ def main():
     list_of_pokemons_1 = coach_1.copy()
     list_of_pokemons_2 = coach_2.copy()
     print(list_of_pokemons_1)
+    
     # Choose first pokemons
     get_pokemon_in_a_list_of_pokemons(1, list_of_pokemons_1)
     get_pokemon_in_a_list_of_pokemons(2, list_of_pokemons_2)
